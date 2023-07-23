@@ -7,11 +7,11 @@
 // Definition des touches pour se deplacer avec le clavier
 #ifndef _LABY_CLAVIER
 #define _LABY_CLAVIER
-#define Clavier_haut '8'
-#define Clavier_bas '2'
-#define Clavier_gauche '4'
-#define Clavier_droite '6'
-#define Clavier_abandon 'q'
+#define Clavier_haut 'z'
+#define Clavier_bas 's'
+#define Clavier_gauche 'q'
+#define Clavier_droite 'd'
+#define Clavier_abandon 'a'
 // Indicateur d'inscription du joueur
 static bool Laby_JoueurInscrit = false;
 // Pointeur vers le nom du joueur

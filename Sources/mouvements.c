@@ -33,7 +33,7 @@ char AtteindreCible(struct Laby_Complet *labyrinthe, char source, int positionV,
         labyrinthe->LabyrintheInterne[positionV][positionH]='0';
     }
     //Si le joueur ou le monstre se déplace normalement
-    if (labyrinthe->LabyrintheInterne[cibleV][cibleH]=='0')
+    if (labyrinthe->LabyrintheInterne[cibleV][cibleH]=='0' || labyrinthe->LabyrintheInterne[cibleV][cibleH]=='S')
     {
         //On cible deviens ce qu'on cible
         cible = labyrinthe->LabyrintheInterne[cibleV][cibleH];
