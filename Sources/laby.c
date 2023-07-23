@@ -502,9 +502,9 @@ bool ConvertirLabyrinthe(struct Laby_Complet *labyrinthe, struct Laby_Message *m
     char *resultat = (char *)malloc(sizeof(char) * (Laby_LargeurMax * Laby_HauteurMax + 1));
     resultat[0] = '\0';
     // On parcours le "labyrinthe"
-    for (int hauteur = 0; hauteur < 10; hauteur++) // On boucle sur la hauteur
+    for (int hauteur = 0; hauteur < labyrinthe->Hauteur; hauteur++) // On boucle sur la hauteur
     {
-        for (int ligne = 0; ligne < 20; ligne++) // On boucle sur la largeur
+        for (int ligne = 0; ligne < labyrinthe->Largeur; ligne++) // On boucle sur la largeur
         {
             if (labyrinthe->LabyrintheInterne[hauteur][ligne] == CelluleVide) // Si la case actuel est une cellule vide
             {
@@ -516,19 +516,19 @@ bool ConvertirLabyrinthe(struct Laby_Complet *labyrinthe, struct Laby_Message *m
                 { // Elle est en Haut à gauche
                     strncat(resultat, &Laby_CoinSuperieurGauche, 1); // on remplit par un coin gauche droit
                 }
-                else if (hauteur == 0 && ligne == 20 - 1)
+                else if (hauteur == 0 && ligne == labyrinthe->Largeur - 1)
                 { // Elle est en Haut à droite
                     strncat(resultat, &Laby_CoinSuperieurDroit, 1); // on remplit par un coin supérieur droit
                 }
-                else if (hauteur == 10 - 1 && ligne == 0)
+                else if (hauteur == labyrinthe->Hauteur - 1 && ligne == 0)
                 { // Elle est en Bas à gauche
                     strncat(resultat, &Laby_CoinInferieurGauche, 1); // on remplit par un coin inferieur gauche
                 }
-                else if (hauteur == 10 - 1 && ligne == 20 - 1)
+                else if (hauteur == labyrinthe->Hauteur - 1 && ligne == labyrinthe->Largeur - 1)
                 { // Elle est en Bas à droite
                     strncat(resultat, &Laby_CoinInferieurDroit, 1); // on remplit par un coin inferieur droit
                 }
-                else if (ligne == 0 || ligne == 20 - 1)
+                else if (ligne == 0 || ligne == labyrinthe->Largeur - 1)
                 { // C'est un caractère vertical en haut/bas
                     strncat(resultat, &Laby_LigneVerticale, 1); // on remplit par une ligneVerticale
                 }
