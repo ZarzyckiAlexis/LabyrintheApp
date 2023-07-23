@@ -223,3 +223,7 @@ void afficherToucheDuJeu(){
     RetourALaLigne();
     AttendreConfirmation("Enfoncez une touche pour continuer");
 }
+
+void clearScreenPart(int x, int y, int width, int height) {
+    PositionnerCurseur(0, 0);
+}
