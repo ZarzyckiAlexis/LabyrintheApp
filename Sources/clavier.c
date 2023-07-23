@@ -34,7 +34,7 @@ int LireToucheNonBloquantSansAfficher()
     
     int touche = -1;
     timeout(0); // Définir un temps d'attente nul pour ne pas bloquer la lecture de touche
-
+    noecho();
     int ch = getch();
     if (ch != ERR) {
         touche = ch;

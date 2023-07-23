@@ -371,7 +371,7 @@ void AfficherLabyrinthe(struct Laby_Complet *labyrinthe) // louis
 // Rafraichit le labyrinthe: murs, joueur, monstre, cookies...
 void RafraichirAffichageLabyrinthe(struct Laby_Complet *labyrinthe) // clear le labyrinthe et rappeler la fonction AfficheLabyrinthe
 {
-    EffacerEcran();
+    clearScreenPart(0, 0, labyrinthe->Largeur, labyrinthe->Hauteur);
     AfficherLabyrinthe(labyrinthe);
 }
 

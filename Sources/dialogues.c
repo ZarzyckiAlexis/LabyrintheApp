@@ -35,7 +35,7 @@ void AfficherOptions()
     AfficherTexteAvecRetour("0. Quitter");
     RetourALaLigne();
     RetourALaLigne();
-    AfficherTexteSansRetour("Votre choix ?");
+    AfficherTexteSansRetour("Votre choix ? ");
 }
 
 // Choix d'une option lue au clavier et appel de la fonction correspondante

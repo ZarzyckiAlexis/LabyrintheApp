@@ -68,3 +68,4 @@ void AttendreSecondes(int dureeEnSecondes);
 void PositionnerCurseur(int positionX, int positionH);
 void LoadingAnimation();
 void afficherToucheDuJeu();
+void clearScreenPart(int x, int y, int width, int height);
