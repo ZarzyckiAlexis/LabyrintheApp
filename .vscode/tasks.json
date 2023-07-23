@@ -1,0 +1,150 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "Compiler le projet complet (Windows)",
+			"command": "C:\\msys64\\mingw64\\bin\\gcc.exe",
+			"args": [
+				"-g",
+				"${workspaceFolder}\\Sources\\*.c",
+				"${workspaceFolder}\\jeu.c",
+				"-isystem",
+				"C:/Program Files/MariaDB/MariaDB Connector C 64-bit/include/",
+				"-o",
+				"${workspaceFolder}\\jeu.exe",
+				"-L",
+				"C:/Program Files/MariaDB/MariaDB Connector C 64-bit/lib/",
+				"-l",
+				"libmariadb"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "cppbuild",
+			"label": "Compiler les tests (Windows)",
+			"command": "C:\\msys64\\mingw64\\bin\\gcc.exe",
+			"args": [
+				"-g",
+				"${workspaceFolder}\\Sources\\*.c",
+				"${workspaceFolder}\\Unity\\*.c",
+				"${workspaceFolder}\\Tests\\*.c",
+				"-isystem",
+				"C:/Program Files/MariaDB/MariaDB Connector C 64-bit/include/",
+				"-o",
+				"${workspaceFolder}\\Tests\\tests.exe",
+				"-L",
+				"C:/Program Files/MariaDB/MariaDB Connector C 64-bit/lib/",
+				"-l",
+				"libmariadb"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "cppbuild",
+			"label": "Compiler le projet complet (Linux)",
+			"command": "/usr/bin/gcc",
+			"args": [
+				"-g",
+				"${workspaceFolder}/Sources/*.c",
+				"${workspaceFolder}/jeu.c",
+				"-I",
+				"/usr/include/mariadb",
+				"-I",
+				"/usr/include/mariadb/mysql",
+				"-o",
+				"${workspaceFolder}/jeu",
+				"-L",
+				"/usr/lib/x86_64-linux-gnu/",
+				"-l",
+				"mariadb",
+				"-l",
+				"ncurses"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/gcc"
+		},
+		{
+			"type": "cppbuild",
+			"label": "Compiler les tests (Linux)",
+			"command": "/usr/bin/gcc",
+			"args": [
+				"-g",
+				"${workspaceFolder}/Sources/*.c",
+				"${workspaceFolder}/Unity/*.c",
+				"${workspaceFolder}/Tests/*.c",
+				"-I",
+				"/usr/include/mariadb",
+				"-I",
+				"/usr/include/mariadb/mysql",
+				"-o",
+				"${workspaceFolder}/Tests/tests",
+				"-L",
+				"C:/Program Files/MariaDB/MariaDB Connector C 64-bit/lib/",
+				"-L",
+				"/usr/lib/x86_64-linux-gnu/",
+				"-l",
+				"mariadb",
+				"-l",
+				"ncurses"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "cppbuild",
+			"label": "C/C++: gcc build active file",
+			"command": "/usr/bin/gcc",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: /usr/bin/gcc"
+		}
+	]
+}

@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "conio.h": "c",
+        "options.h": "c",
+        "ecran.h": "c",
+        "stdlib.h": "c",
+        "clavier.h": "c",
+        "unistd.h": "c",
+        "mouvements.h": "c",
+        "termios.h": "c",
+        "ncurses.h": "c",
+        "*.tcc": "c",
+        "istream": "c",
+        "ostream": "c",
+        "ranges": "c",
+        "score.h": "c",
+        "time.h": "c",
+        "stdbool.h": "c",
+        "dialogues.h": "c",
+        "common.h": "c",
+        "laby.h": "c"
+    },
+    "files.encoding": "utf8"
+}
