@@ -320,7 +320,7 @@ long JouerUnePartie(struct Laby_Complet *labyrinthe, bool AttraperMonstre)
     //Traitement
     do
     {
-        AfficherTexteSansRetour("Temps restant: ");
+        AfficherTexteSansRetour("Temp(s) restant: ");
         AfficherTempsRestant(tempsRestant);
         //On regarde pour se déplacer
         cible=SeDeplacer(labyrinthe);
@@ -345,11 +345,11 @@ long JouerUnePartie(struct Laby_Complet *labyrinthe, bool AttraperMonstre)
         tempsRestant=0;
     }
     AfficherTexteSansRetour("***** Score final : ");
-    printw("%ld points *****",tempsRestant);
+    printw("%ld point(s) *****",tempsRestant);
     refresh();
     RetourALaLigne();
     RetourALaLigne();
-    AttendreConfirmation("Partie terminer");
+    AttendreConfirmation("Fin de partie");
     return tempsRestant;
 
 }
@@ -358,7 +358,7 @@ long JouerUnePartie(struct Laby_Complet *labyrinthe, bool AttraperMonstre)
 void JouerPartieSortie()
 {
     //Déclaration des variables
-    struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
+    struct Laby_Complet *labyrinthe;
     MYSQL *sqlConnection;
     long score;
     //Traitement
@@ -368,6 +368,7 @@ void JouerPartieSortie()
     score=JouerUnePartie(labyrinthe,false);
     AjouterScore("S",score);
     free(labyrinthe->LabyrintheInterne);
+    free(labyrinthe->CellulesAffichables);
     free(labyrinthe);
 
 }
@@ -376,7 +377,7 @@ void JouerPartieSortie()
 void JouerPartieMonstre()
 {
     //Déclaration des variables
-    struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
+    struct Laby_Complet *labyrinthe;
     MYSQL *sqlConnection;
     long score;
     //Traitement
@@ -386,5 +387,6 @@ void JouerPartieMonstre()
     score=JouerUnePartie(labyrinthe,true);
     AjouterScore("M",score);
     free(labyrinthe->LabyrintheInterne);
+    free(labyrinthe->CellulesAffichables);
     free(labyrinthe);
 }
