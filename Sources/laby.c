@@ -134,7 +134,7 @@ void ConvertirUneCelluleEnTexteAffichable(struct Laby_Complet *labyrinthe, int p
     else if (positionV==0 && positionH!=labyrinthe->Largeur-1) //Ligne supérieur
     {
         //On regarde s'il y a un mur en bas
-        bool bas = labyrinthe->LabyrintheInterne[positionV+1][positionH]=='1' ? true : false;
+        bool bas = labyrinthe->LabyrintheInterne[positionV+1][positionH]=='1';
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,false,true,bas,true);
     }
     else if (positionV==0 && positionH==labyrinthe->Largeur-1) //Coin supérieur droit
@@ -144,13 +144,13 @@ void ConvertirUneCelluleEnTexteAffichable(struct Laby_Complet *labyrinthe, int p
     else if (positionH==0 && positionV!=labyrinthe->Hauteur-1) //Première colonne gauche
     {
         //On regarde s'il y a un mur à droite
-        bool droite = labyrinthe->LabyrintheInterne[positionV][positionH+1]=='1' ? true : false;
+        bool droite = labyrinthe->LabyrintheInterne[positionV][positionH+1]=='1';
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,true,droite,true,false);
     }
     else if (positionH==labyrinthe->Largeur-1 && positionV!=labyrinthe->Hauteur-1) //Dernière colonne droite
     {
         //On regarde s'il y a un mur à gauche
-        bool gauche = labyrinthe->LabyrintheInterne[positionV][positionH-1]=='1' ? true : false;
+        bool gauche = labyrinthe->LabyrintheInterne[positionV][positionH-1]=='1';
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,true,false,true,gauche);
     }
     else if (positionV==labyrinthe->Hauteur-1 && positionH==0) //Coin inférieur gauche
@@ -160,7 +160,7 @@ void ConvertirUneCelluleEnTexteAffichable(struct Laby_Complet *labyrinthe, int p
     else if (positionV==labyrinthe->Hauteur-1 && positionH!=labyrinthe->Largeur-1 ) //Ligne inférieur
     {
         //On regarde s'il y a un mur à haut
-        bool haut = (labyrinthe->LabyrintheInterne[positionV-1][positionH]=='1') ? true : false;
+        bool haut = (labyrinthe->LabyrintheInterne[positionV-1][positionH]=='1');
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,haut,true,false,true);
     }
     else if (positionV==labyrinthe->Hauteur-1 && positionH==labyrinthe->Largeur-1) //Coin inférieur droit
@@ -169,13 +169,13 @@ void ConvertirUneCelluleEnTexteAffichable(struct Laby_Complet *labyrinthe, int p
     }else //Intérieur du labyrinthe
     {   
         //On regarde s'il y a un mur en haut
-        bool haut = (labyrinthe->LabyrintheInterne[positionV-1][positionH]=='1') ? true : false;
+        bool haut = labyrinthe->LabyrintheInterne[positionV-1][positionH]=='1';
         //On regarde s'il y a un mur à droite   
-        bool droite = labyrinthe->LabyrintheInterne[positionV][positionH+1]=='1' ? true : false;
+        bool droite = labyrinthe->LabyrintheInterne[positionV][positionH+1]=='1';
         //On regarde s'il y a un mur en bas
-        bool bas = labyrinthe->LabyrintheInterne[positionV+1][positionH]=='1' ? true : false;
+        bool bas = labyrinthe->LabyrintheInterne[positionV+1][positionH]=='1';
         //On regarde s'il y a un mur à gauche
-        bool gauche = labyrinthe->LabyrintheInterne[positionV][positionH-1]=='1' ? true : false;
+        bool gauche = labyrinthe->LabyrintheInterne[positionV][positionH-1]=='1';
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,haut,droite,bas,gauche);
     }
     //On insert dans les futures cellulles à afficher ce qui a été convertie
