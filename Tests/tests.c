@@ -191,7 +191,7 @@ void test_AtteindreCible_Humain_blanc(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    verif=AtteindreCible(labyrinthe,'J',1,1,1,2,true);
+    verif=AtteindreCible(labyrinthe,'J',1,1,2,1,true);
     TEST_ASSERT_TRUE(verif=='0');
     free(messageAFormater);
     free(labyrinthe);
@@ -202,7 +202,7 @@ void test_AtteindreCible_Monstre_blanc(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    verif=AtteindreCible(labyrinthe,'J',1,1,1,2,true);
+    verif=AtteindreCible(labyrinthe,'M',1,1,2,1,true);
     TEST_ASSERT_TRUE(verif=='0');
     free(messageAFormater);
     free(labyrinthe);
@@ -332,8 +332,8 @@ void test_AvancerVersBas_Mur_Humain(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=1;
-    position->Horizontal=2;
+    position->Vertical=4;
+    position->Horizontal=1;
     verif=AvancerBas(labyrinthe,position,'J',true);
     TEST_ASSERT_TRUE(verif=='J');
     free(position);
@@ -378,8 +378,8 @@ void test_AvancerVersBas_Mur_Monstre(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=1;
-    position->Horizontal=2;
+    position->Vertical=4;
+    position->Horizontal=1;
     verif=AvancerBas(labyrinthe,position,'M',true);
     TEST_ASSERT_TRUE(verif=='M');
     free(position);
@@ -425,7 +425,7 @@ void test_AvancerVersGauche_Mur_Humain(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=2;
+    position->Vertical=3;
     position->Horizontal=1;
     verif=AvancerGauche(labyrinthe,position,'J',true);
     TEST_ASSERT_TRUE(verif=='J');
@@ -440,7 +440,7 @@ void test_AvancerVersGauche_Blanc_Humain(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=1;
+    position->Vertical=3;
     position->Horizontal=2;
     verif=AvancerGauche(labyrinthe,position,'J',true);
     TEST_ASSERT_TRUE(verif=='0');
@@ -456,8 +456,8 @@ void test_AvancerVersGauche_Monstre_Humain(){
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
     position->Vertical=1;
-    position->Horizontal=2;
-    labyrinthe->LabyrintheInterne[1][1]='M';
+    position->Horizontal=1;
+    labyrinthe->LabyrintheInterne[1][0]='M';
     verif=AvancerGauche(labyrinthe,position,'J',true);
     TEST_ASSERT_TRUE(verif=='M');
     free(position);
@@ -471,7 +471,7 @@ void test_AvancerVersGauche_Mur_Monstre(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=2;
+    position->Vertical=3;
     position->Horizontal=1;
     verif=AvancerGauche(labyrinthe,position,'M',true);
     TEST_ASSERT_TRUE(verif=='M');
@@ -486,7 +486,7 @@ void test_AvancerVersGauche_Blanc_Monstre(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=1;
+    position->Vertical=3;
     position->Horizontal=2;
     verif=AvancerGauche(labyrinthe,position,'M',true);
     TEST_ASSERT_TRUE(verif=='0');
@@ -502,8 +502,8 @@ void test_AvancerVersGauche_Humain_Monstre(){
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
     position->Vertical=1;
-    position->Horizontal=2;
-    labyrinthe->LabyrintheInterne[1][1]='J';
+    position->Horizontal=1;
+    labyrinthe->LabyrintheInterne[1][0]='J';
     verif=AvancerGauche(labyrinthe,position,'M',true);
     TEST_ASSERT_TRUE(verif=='J');
     free(position);
@@ -518,7 +518,7 @@ void test_AvancerVersDroite_Mur_Humain(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=2;
+    position->Vertical=1;
     position->Horizontal=1;
     verif=AvancerDroite(labyrinthe,position,'J',true);
     TEST_ASSERT_TRUE(verif=='J');
@@ -533,8 +533,8 @@ void test_AvancerVersDroite_Blanc_Humain(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=1;
-    position->Horizontal=2;
+    position->Vertical=3;
+    position->Horizontal=1;
     verif=AvancerDroite(labyrinthe,position,'J',true);
     TEST_ASSERT_TRUE(verif=='0');
     free(position);
@@ -564,7 +564,7 @@ void test_AvancerVersDroite_Mur_Monstre(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=2;
+    position->Vertical=1;
     position->Horizontal=1;
     verif=AvancerDroite(labyrinthe,position,'M',true);
     TEST_ASSERT_TRUE(verif=='M');
@@ -579,8 +579,8 @@ void test_AvancerVersDroite_Blanc_Monstre(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     char verif;
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt",labyrinthe,messageAFormater);
-    position->Vertical=1;
-    position->Horizontal=2;
+    position->Vertical=3;
+    position->Horizontal=1;
     verif=AvancerDroite(labyrinthe,position,'M',true);
     TEST_ASSERT_TRUE(verif=='0');
     free(position);
@@ -725,65 +725,149 @@ void test_DeplacerMonstre(){
 void test_ConvertirUneCelluleEnTexte_Mur_Superieur_Gauche(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[0][0].Gauche==108 && labyrinthe->CellulesAffichables[0][0].Droite==113);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[0][0].Gauche==Laby_CoinSuperieurGauche && labyrinthe->CellulesAffichables[0][0].Droite==Laby_LigneHorizontale);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
 }
 //Test pour le coin supérieur droit
 void test_ConvertirUneCelluleEnTexte_Mur_Superieur_Droite(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[0][19].Gauche==107 && labyrinthe->CellulesAffichables[0][19].Droite==32);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[0][labyrinthe->Largeur-1].Gauche==Laby_CoinSuperieurDroit && labyrinthe->CellulesAffichables[0][labyrinthe->Largeur-1].Droite==Laby_Vide);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
 }
 //Test pour le coin inférieur gauche
 void test_ConvertirUneCelluleEnTexte_Mur_Inferieur_Gauche(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[9][0].Gauche==109 && labyrinthe->CellulesAffichables[9][0].Droite==113);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[labyrinthe->Hauteur-1][0].Gauche==Laby_CoinInferieurGauche && labyrinthe->CellulesAffichables[labyrinthe->Hauteur-1][0].Droite==Laby_LigneHorizontale);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
 }
 //Test pour le coin inférieur droit
 void test_ConvertirUneCelluleEnTexte_Mur_Inferieur_Droite(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[9][19].Gauche==106 && labyrinthe->CellulesAffichables[9][19].Droite==32);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[labyrinthe->Hauteur-1][labyrinthe->Largeur-1].Gauche==Laby_CoinInferieurDroit && labyrinthe->CellulesAffichables[labyrinthe->Hauteur-1][labyrinthe->Largeur-1].Droite==Laby_Vide);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
 }
-//Test pour la ligne supérieur
+//Test pour le vide
 void test_ConvertirUneCelluleEnTexte_Vide(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[1][1].Gauche==32 && labyrinthe->CellulesAffichables[1][1].Droite==32);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[1][1].Gauche==Laby_Vide && labyrinthe->CellulesAffichables[1][1].Droite==Laby_Vide);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
 }
-//Test pour la ligne supérieur
-void test_ConvertirUneCelluleEnTexte_Ligne_Superieur(){
+//Test pour ligne horizontale/vide
+void test_ConvertirUneCelluleEnTexte_ligneHorizontale_vide(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[0][3].Gauche==113 && labyrinthe->CellulesAffichables[0][3].Droite==113);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[2][9].Gauche==Laby_LigneHorizontale && labyrinthe->CellulesAffichables[2][9].Droite==Laby_Vide);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
 }
-//Test pour la ligne inférieur
-void test_ConvertirUneCelluleEnTexte_Ligne_Inferieur(){
+//Test pour ligne vertical/vide
+void test_ConvertirUneCelluleEnTexte_ligneVertical_vide(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[9][1].Gauche==113 && labyrinthe->CellulesAffichables[9][1].Droite==113);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[14][9].Gauche==Laby_LigneVerticale && labyrinthe->CellulesAffichables[14][9].Droite==Laby_Vide);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
 }
-//Test pour la ligne supérieur
-void test_ConvertirUneCelluleEnTexte_Colonne_Gauche(){
+//Test pour ligne horizontale/ligne horizontal (0100)
+void test_ConvertirUneCelluleEnTexte_ligneHorizontale_LigneHorizontale_0100(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[1][0].Gauche==120 && labyrinthe->CellulesAffichables[1][0].Droite==32);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[2][4].Gauche==Laby_LigneHorizontale && labyrinthe->CellulesAffichables[2][4].Droite==Laby_LigneHorizontale);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
 }
-//Test pour la ligne inférieur
-void test_ConvertirUneCelluleEnTexte_Colonne_Droite(){
+
+//Test pour ligne horizontale/ligne horizontal (0101)
+void test_ConvertirUneCelluleEnTexte_ligneHorizontale_LigneHorizontale_0101(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[1][19].Gauche==120 && labyrinthe->CellulesAffichables[1][19].Droite==32);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[2][8].Gauche==Laby_LigneHorizontale && labyrinthe->CellulesAffichables[2][8].Droite==Laby_LigneHorizontale);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
 }
+//Test pour bord supérieur/ligne horizontale
+void test_ConvertirUneCelluleEnTexte_BordSuperieur_ligne_horizontale(){
+    struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
+    labyrinthe=ChargerLabyrintheAuHasardTest();
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[0][2].Gauche==Laby_BordSuperieur && labyrinthe->CellulesAffichables[0][2].Droite==Laby_LigneHorizontale);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
+    free(labyrinthe);
+}
+//Test pour ligne verticale/vide (1000)
+void test_ConvertirUneCelluleEnTexte_ligneVerticale_Vide_1000(){
+    struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
+    labyrinthe=ChargerLabyrintheAuHasardTest();
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[3][5].Gauche==Laby_LigneVerticale && labyrinthe->CellulesAffichables[3][5].Droite==Laby_Vide);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
+    free(labyrinthe);
+}
+//Test pour ligne verticale/vide (1010)
+void test_ConvertirUneCelluleEnTexte_ligneVerticale_Vide_1010(){
+    struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
+    labyrinthe=ChargerLabyrintheAuHasardTest();
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[1][0].Gauche==Laby_LigneVerticale && labyrinthe->CellulesAffichables[1][0].Droite==Laby_Vide);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
+    free(labyrinthe);
+}
+//Test pour bord droit/vide
+void test_ConvertirUneCelluleEnTexte_bordDroit_Vide(){
+    struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
+    labyrinthe=ChargerLabyrintheAuHasardTest();
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[2][5].Gauche==Laby_BordDroit && labyrinthe->CellulesAffichables[2][5].Droite==Laby_Vide);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
+    free(labyrinthe);
+}
+//Test pour bord inférieur/vide
+void test_ConvertirUneCelluleEnTexte_bordInferieur_ligneVertical(){
+    struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
+    labyrinthe=ChargerLabyrintheAuHasardTest();
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[15][6].Gauche==Laby_BordInferieur && labyrinthe->CellulesAffichables[15][6].Droite==Laby_LigneHorizontale);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
+    free(labyrinthe);
+}
+//Test pour bord gauche/ligne horizontale
+void test_ConvertirUneCelluleEnTexte_bordGauche_ligneHorizontale(){
+    struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
+    labyrinthe=ChargerLabyrintheAuHasardTest();
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[5][0].Gauche==Laby_BordGauche && labyrinthe->CellulesAffichables[5][0].Droite==Laby_LigneHorizontale);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
+    free(labyrinthe);
+}
+//Test pour croix/ligne horizontale
+void test_ConvertirUneCelluleEnTexte_croix_ligneHorizontale(){
+    struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
+    labyrinthe=ChargerLabyrintheAuHasardTest();
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[4][11].Gauche==Laby_Croix && labyrinthe->CellulesAffichables[4][11].Droite==Laby_LigneHorizontale);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
+    free(labyrinthe);
+}
+
+
 //Tests de la fonction PlacerAuHasard
 void test_PlacerAuHasard_Sortie(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
@@ -917,10 +1001,18 @@ int main()
         RUN_TEST(test_ConvertirUneCelluleEnTexte_Mur_Inferieur_Gauche);
         RUN_TEST(test_ConvertirUneCelluleEnTexte_Mur_Inferieur_Droite);
         RUN_TEST(test_ConvertirUneCelluleEnTexte_Vide);
-        RUN_TEST(test_ConvertirUneCelluleEnTexte_Ligne_Superieur);
-        RUN_TEST(test_ConvertirUneCelluleEnTexte_Ligne_Inferieur);
-        RUN_TEST(test_ConvertirUneCelluleEnTexte_Colonne_Gauche);
-        RUN_TEST(test_ConvertirUneCelluleEnTexte_Colonne_Droite);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_bordDroit_Vide);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_bordGauche_ligneHorizontale);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_bordInferieur_ligneVertical);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_BordSuperieur_ligne_horizontale);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_croix_ligneHorizontale);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_ligneHorizontale_LigneHorizontale_0100);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_ligneHorizontale_LigneHorizontale_0101);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_ligneHorizontale_vide);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_ligneVertical_vide);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_ligneVerticale_Vide_1000);
+        RUN_TEST(test_ConvertirUneCelluleEnTexte_ligneVerticale_Vide_1010);
+
     //Tests de la fonction PlacerAuHasard
         RUN_TEST(test_PlacerAuHasard_Sortie);
         RUN_TEST(test_PlacerAuHasard_Monstre);
