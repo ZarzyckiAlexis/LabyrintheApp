@@ -607,11 +607,11 @@ void test_AvancerVersDroite_Humain_Monstre(){
 void test_ConvertirLabyrinthe(){
 
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
-    labyrinthe->Hauteur = 20;
-    labyrinthe->Largeur = 10;
-
     struct Laby_Message *message = malloc(sizeof(struct Laby_Message));
     message->Message[0] = '\0';
+
+    labyrinthe=ChargerLabyrintheAuHasardTest();
+
 
     labyrinthe->CellulesAffichables = malloc(sizeof(struct Laby_Cell *) * labyrinthe->Hauteur);
     for (int i = 0; i < labyrinthe->Hauteur; i++) {
@@ -624,9 +624,10 @@ void test_ConvertirLabyrinthe(){
     }
 
     // Appel de la fonction de conversion
-    LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt", labyrinthe, message);
     bool conversionReussie = ConvertirLabyrinthe(labyrinthe, message);
     TEST_ASSERT_EQUAL_INT(1, conversionReussie);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
     free(message);
 } 
@@ -634,8 +635,8 @@ void test_ConvertirLabyrinthe(){
 void test_ConvertirLabyrinthe_failed(){
 
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
-    labyrinthe->Hauteur = 20;
-    labyrinthe->Largeur = 10;
+    labyrinthe=ChargerLabyrintheAuHasardTest();
+
 
     struct Laby_Message *message = malloc(sizeof(struct Laby_Message));
     message->Message[0] = '\0';
@@ -654,6 +655,8 @@ void test_ConvertirLabyrinthe_failed(){
     LireFichierLabyrinthe("../TestErreurLabyrinthe/labyrintheCaractèreInconnu.txt", labyrinthe, message);
     bool conversionReussie = ConvertirLabyrinthe(labyrinthe, message);
     TEST_ASSERT_EQUAL_INT(0, conversionReussie);
+    free(labyrinthe->CellulesAffichables);
+    free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
     free(message);
 } 
@@ -875,9 +878,9 @@ void test_PlacerAuHasard_Sortie(){
     bool verif = false;
     labyrinthe=ChargerLabyrintheAuHasardTest();
     PlacerAuHasard(labyrinthe,'J','0',false);
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < labyrinthe->Hauteur; i++)
     {
-        for (int j = 0; j < 20; j++)
+        for (int j = 0; j < labyrinthe->Largeur; j++)
         {
             if (labyrinthe->LabyrintheInterne[i][j]=='J')
             {
@@ -897,9 +900,9 @@ void test_PlacerAuHasard_Monstre(){
     bool verif = false;
     labyrinthe=ChargerLabyrintheAuHasardTest();
     PlacerAuHasard(labyrinthe,'M','0',false);
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < labyrinthe->Hauteur; i++)
     {
-        for (int j = 0; j < 20; j++)
+        for (int j = 0; j < labyrinthe->Largeur; j++)
         {
             if (labyrinthe->LabyrintheInterne[i][j]=='M')
             {
@@ -919,9 +922,9 @@ void test_PlacerAuHasard_Joueur(){
     bool verif = false;
     labyrinthe=ChargerLabyrintheAuHasardTest();
     PlacerAuHasard(labyrinthe,'S','1',true);
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < labyrinthe->Hauteur; i++)
     {
-        for (int j = 0; j < 20; j++)
+        for (int j = 0; j < labyrinthe->Largeur; j++)
         {
             if (labyrinthe->LabyrintheInterne[i][j]=='S')
             {
