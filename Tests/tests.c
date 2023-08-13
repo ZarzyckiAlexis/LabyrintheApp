@@ -607,11 +607,10 @@ void test_AvancerVersDroite_Humain_Monstre(){
 void test_ConvertirLabyrinthe(){
 
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
-    struct Laby_Message *message = malloc(sizeof(struct Laby_Message));
-    message->Message[0] = '\0';
-
     labyrinthe=ChargerLabyrintheAuHasardTest();
 
+    struct Laby_Message *message = malloc(sizeof(struct Laby_Message));
+    message->Message[0] = '\0';
 
     labyrinthe->CellulesAffichables = malloc(sizeof(struct Laby_Cell *) * labyrinthe->Hauteur);
     for (int i = 0; i < labyrinthe->Hauteur; i++) {
@@ -624,9 +623,11 @@ void test_ConvertirLabyrinthe(){
     }
 
     // Appel de la fonction de conversion
+    LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt", labyrinthe, message);
+
+    // Appel de la fonction de conversion
     bool conversionReussie = ConvertirLabyrinthe(labyrinthe, message);
     TEST_ASSERT_EQUAL_INT(1, conversionReussie);
-    free(labyrinthe->CellulesAffichables);
     free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
     free(message);
