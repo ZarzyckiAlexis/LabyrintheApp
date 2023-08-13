@@ -212,11 +212,11 @@ void afficherToucheDuJeu(){
     RetourALaLigne();
     RetourALaLigne();
     AfficherTexteAvecRetour("Touches de deplacement:");
-    AfficherTexteAvecRetour("4. aller vers la gauche");
-    AfficherTexteAvecRetour("6. aller vers la droite");
-    AfficherTexteAvecRetour("8. aller vers le haut");
-    AfficherTexteAvecRetour("2. aller vers le bas");
-    AfficherTexteAvecRetour("q. abandonner");
+    AfficherTexteAvecRetour("q. aller vers la gauche");
+    AfficherTexteAvecRetour("d. aller vers la droite");
+    AfficherTexteAvecRetour("z. aller vers le haut");
+    AfficherTexteAvecRetour("s. aller vers le bas");
+    AfficherTexteAvecRetour("a. abandonner");
     RetourALaLigne();
     RetourALaLigne();
     RetourALaLigne();

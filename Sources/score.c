@@ -490,6 +490,7 @@ void AfficherMeilleursScores(int nombreDeScoresParJeu)
     RetourALaLigne();
     ChargerLaDBEnMemoire(false,tousLesScores);
     AfficherTexteIndenteAvecRetour("Jeu: Sortie");
+    RetourALaLigne();
     trierParOrdreDecroissant(tousLesScores);
     //On boucle jusqu'à ce qu'on est plus de partie ou si on a atteint de le nombre de score à afficher
     do
@@ -509,6 +510,7 @@ void AfficherMeilleursScores(int nombreDeScoresParJeu)
     RetourALaLigne();
     RetourALaLigne();
     AfficherTexteIndenteAvecRetour("Jeu: Monstre");
+    RetourALaLigne();
     cptAfficher=0;
     cpt=0;
     do
@@ -527,6 +529,8 @@ void AfficherMeilleursScores(int nombreDeScoresParJeu)
     } while (cptAfficher<nombreDeScoresParJeu && cpt<tousLesScores->NombreDeParties);
     
     EffacerLaDBEnMemoire(tousLesScores); 
+    RetourALaLigne();
+    RetourALaLigne();
     AttendreConfirmation("Enfoncez une touche");
 }
 //Fonction qui permet de tier les scores par ordre décroissant
