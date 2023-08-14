@@ -141,18 +141,18 @@ void test_CreerLaDB(){
 
     // Vérif création de la table score_jeu
         // On exécute la requête
-    int result1 = mysql_query(sqlConnection, "SELECT 1 FROM score_jeu LIMIT 1");
+    int result1 = mysql_query(sqlConnection, "SELECT 1 FROM jeu LIMIT 1");
         // On stock la requête
     MYSQL_RES* res1 = mysql_store_result(sqlConnection);
     // Vérif création de la table score_joueur
         // On exécute la requête
-    int result2 = mysql_query(sqlConnection, "SELECT 1 FROM score_joueur LIMIT 1");
+    int result2 = mysql_query(sqlConnection, "SELECT 1 FROM joueur LIMIT 1");
         // On stock la requête
     MYSQL_RES* res2 = mysql_store_result(sqlConnection);
 
     // Vérif création de la table score_partie
         // On exécute la requête
-    int result3 = mysql_query(sqlConnection, "SELECT 1 FROM score_partie LIMIT 1");
+    int result3 = mysql_query(sqlConnection, "SELECT 1 FROM partie LIMIT 1");
         // On stock la requête
     MYSQL_RES* res3 = mysql_store_result(sqlConnection);
         // Si le résultat vaut 0 et que le résultat n'est pas null: c'est bon
@@ -612,15 +612,7 @@ void test_ConvertirLabyrinthe(){
     struct Laby_Message *message = malloc(sizeof(struct Laby_Message));
     message->Message[0] = '\0';
 
-    labyrinthe->CellulesAffichables = malloc(sizeof(struct Laby_Cell *) * labyrinthe->Hauteur);
-    for (int i = 0; i < labyrinthe->Hauteur; i++) {
-        labyrinthe->CellulesAffichables[i] = malloc(sizeof(struct Laby_Cell) * labyrinthe->Largeur);
-    }
-
-    labyrinthe->LabyrintheInterne = malloc(sizeof(char *) * labyrinthe->Hauteur);
-    for (int i = 0; i < labyrinthe->Hauteur; i++) {
-        labyrinthe->LabyrintheInterne[i] = malloc(sizeof(char) * (labyrinthe->Largeur + 1)); 
-    }
+    
 
     // Appel de la fonction de conversion
     LireFichierLabyrinthe("../TrueLabyrinthe/labyrinthe1.txt", labyrinthe, message);
@@ -738,7 +730,7 @@ void test_ConvertirUneCelluleEnTexte_Mur_Superieur_Gauche(){
 void test_ConvertirUneCelluleEnTexte_Mur_Superieur_Droite(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[0][labyrinthe->Largeur-1].Gauche==Laby_CoinSuperieurDroit && labyrinthe->CellulesAffichables[0][labyrinthe->Largeur-1].Droite==Laby_Vide);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[0][labyrinthe->Largeur-2].Gauche==Laby_CoinSuperieurDroit && labyrinthe->CellulesAffichables[0][labyrinthe->Largeur-1].Droite==Laby_Vide);
     free(labyrinthe->CellulesAffichables);
     free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
@@ -756,7 +748,7 @@ void test_ConvertirUneCelluleEnTexte_Mur_Inferieur_Gauche(){
 void test_ConvertirUneCelluleEnTexte_Mur_Inferieur_Droite(){
     struct Laby_Complet *labyrinthe = malloc(sizeof(struct Laby_Complet));
     labyrinthe=ChargerLabyrintheAuHasardTest();
-    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[labyrinthe->Hauteur-1][labyrinthe->Largeur-1].Gauche==Laby_CoinInferieurDroit && labyrinthe->CellulesAffichables[labyrinthe->Hauteur-1][labyrinthe->Largeur-1].Droite==Laby_Vide);
+    TEST_ASSERT_TRUE(labyrinthe->CellulesAffichables[labyrinthe->Hauteur-1][labyrinthe->Largeur-2].Gauche==Laby_CoinInferieurDroit && labyrinthe->CellulesAffichables[labyrinthe->Hauteur-1][labyrinthe->Largeur-1].Droite==Laby_Vide);
     free(labyrinthe->CellulesAffichables);
     free(labyrinthe->LabyrintheInterne);
     free(labyrinthe);
