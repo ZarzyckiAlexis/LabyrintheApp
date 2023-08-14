@@ -320,7 +320,7 @@ long JouerUnePartie(struct Laby_Complet *labyrinthe, bool AttraperMonstre)
     //Traitement
     do
     {
-        AfficherTexteSansRetour("Temp(s) restant: ");
+        AfficherTexteSansRetour("Temps restant: ");
         AfficherTempsRestant(tempsRestant);
         //On regarde pour se déplacer
         cible=SeDeplacer(labyrinthe);

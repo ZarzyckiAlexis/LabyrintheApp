@@ -134,7 +134,7 @@ void AfficherTexteDansCadre(char *TexteAAfficher)
 // Affiche le temps restant a la position couraate en revenant ensuite au debut de la ligne
 void AfficherTempsRestant(long tempsRestant)
 {
-    printw("%ld secondes\r",tempsRestant);
+    printw("%ld seconde(s)\r",tempsRestant);
     refresh(); // Raffraichir l'écran
 }
 
@@ -211,7 +211,7 @@ void afficherToucheDuJeu(){
     RetourALaLigne();
     RetourALaLigne();
     RetourALaLigne();
-    AfficherTexteAvecRetour("Touches de deplacement:");
+    AfficherTexteAvecRetour("Touches de déplacement:");
     AfficherTexteAvecRetour("q. aller vers la gauche");
     AfficherTexteAvecRetour("d. aller vers la droite");
     AfficherTexteAvecRetour("z. aller vers le haut");

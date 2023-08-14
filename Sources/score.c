@@ -63,13 +63,13 @@ void ExecuterInstructionSQL(bool DBProduction, MYSQL *sqlConnection, char *instr
 void CreerLaDB(bool DBProduction, MYSQL *sqlConnection)
 {
     // Supprimer la DB
-    ExecuterInstructionSQL(DBProduction, sqlConnection, "DROP TABLE score_partie");
-    ExecuterInstructionSQL(DBProduction, sqlConnection, "DROP TABLE score_jeu");
-    ExecuterInstructionSQL(DBProduction, sqlConnection, "DROP TABLE score_joueur");
+    ExecuterInstructionSQL(DBProduction, sqlConnection, "DROP TABLE partie");
+    ExecuterInstructionSQL(DBProduction, sqlConnection, "DROP TABLE jeu");
+    ExecuterInstructionSQL(DBProduction, sqlConnection, "DROP TABLE joueur");
     // Créer la DB
-    ExecuterInstructionSQL(DBProduction, sqlConnection, "CREATE TABLE score_jeu(ID_JEU SMALLINT AUTO_INCREMENT,NOM_DU_JEU VARCHAR(51),PRIMARY KEY(ID_JEU));");
-    ExecuterInstructionSQL(DBProduction, sqlConnection, "CREATE TABLE score_joueur(ID_JOUEUR SMALLINT AUTO_INCREMENT,NOM_DU_JOUEUR VARCHAR(101),PRIMARY KEY(ID_JOUEUR),UNIQUE(NOM_DU_JOUEUR));");
-    ExecuterInstructionSQL(DBProduction, sqlConnection, "CREATE TABLE score_partie(ID_PARTIE SMALLINT AUTO_INCREMENT,SCORE VARCHAR(10),ID_JEU SMALLINT NOT NULL,ID_JOUEUR SMALLINT NOT NULL,PRIMARY KEY(ID_PARTIE),FOREIGN KEY(ID_JEU) REFERENCES score_jeu(ID_JEU),FOREIGN KEY(ID_JOUEUR) REFERENCES score_joueur(ID_JOUEUR));");
+    ExecuterInstructionSQL(DBProduction, sqlConnection, "CREATE TABLE jeu(ID_JEU SMALLINT AUTO_INCREMENT,NOM_DU_JEU VARCHAR(51),PRIMARY KEY(ID_JEU));");
+    ExecuterInstructionSQL(DBProduction, sqlConnection, "CREATE TABLE joueur(ID_JOUEUR SMALLINT AUTO_INCREMENT,NOM_DU_JOUEUR VARCHAR(101),PRIMARY KEY(ID_JOUEUR),UNIQUE(NOM_DU_JOUEUR));");
+    ExecuterInstructionSQL(DBProduction, sqlConnection, "CREATE TABLE partie(ID_PARTIE SMALLINT AUTO_INCREMENT,SCORE VARCHAR(10),ID_JEU SMALLINT NOT NULL,ID_JOUEUR SMALLINT NOT NULL,PRIMARY KEY(ID_PARTIE),FOREIGN KEY(ID_JEU) REFERENCES jeu(ID_JEU),FOREIGN KEY(ID_JOUEUR) REFERENCES joueur(ID_JOUEUR));");
 }
 
 // Connexion a la base de donnee, en la creant si necessaire
@@ -84,7 +84,7 @@ MYSQL *ConnecterLaDB(bool DBProduction, bool creerLaDBSiNecessaire, bool termine
     // Se connecte à la DB et vérifie la résultat obtenu
     if (DBProduction == 0)
     {
-        if (!mysql_real_connect(sqlConnection, ServerDB, "root", "", "Laby101", 0, NULL, 0))
+        if (!mysql_real_connect(sqlConnection, ServerDB, "root", "", "Laby308", 0, NULL, 0))
         {
             fprintf(stderr, "%s\n", mysql_error(sqlConnection));
         }
@@ -96,7 +96,7 @@ MYSQL *ConnecterLaDB(bool DBProduction, bool creerLaDBSiNecessaire, bool termine
     }
     else
     {
-        if (!mysql_real_connect(sqlConnection, ServerDB, "root", "", "Laby101_test", 0, NULL, 0))
+        if (!mysql_real_connect(sqlConnection, ServerDB, "root", "", "Laby308_test", 0, NULL, 0))
         {
             fprintf(stderr, "%s\n", mysql_error(sqlConnection));
         }
@@ -136,7 +136,7 @@ void LireJoueursDansDB(struct Laby_Score_Complet *tousLesScores, MYSQL *sqlConne
     int nbr_ligne, cpt,id;
     // Traitement
     // On exécute la requête
-    ExecuterInstructionSQL(false, sqlConnection, "SELECT * FROM `score_joueur` ORDER BY ID_JOUEUR; ");
+    ExecuterInstructionSQL(false, sqlConnection, "SELECT * FROM `joueur` ORDER BY ID_JOUEUR; ");
     // On stocke le résultat dans une variable
     // On regarde si elle est null et on affiche un message en cas d'erreur
     if (globalResultat == NULL){
@@ -171,7 +171,7 @@ void LireJeuxDansDB(struct Laby_Score_Complet *tousLesScores, MYSQL *sqlConnecti
     int nbr_ligne, cpt,id;
     // Traitement
     // On exécute la requête
-    ExecuterInstructionSQL(false, sqlConnection, "SELECT * FROM `score_jeu`;");
+    ExecuterInstructionSQL(false, sqlConnection, "SELECT * FROM `jeu`;");
     // On stocke le résultat dans une variable
     // On regarde si elle est null et on affiche un message en cas d'erreur
     if (globalResultat == NULL){
@@ -208,7 +208,7 @@ void LirePartiesDansDB(struct Laby_Score_Complet *tousLesScores, MYSQL *sqlConne
     int nbr_ligne, cpt,ID,Ref_Joueur,Ref_Jeu,Score;
     // Traitement
     // On exécute la requête
-    ExecuterInstructionSQL(false, sqlConnection, "SELECT * FROM `score_partie` ORDER BY SCORE;");
+    ExecuterInstructionSQL(false, sqlConnection, "SELECT * FROM `partie` ORDER BY SCORE;");
     // On stocke le résultat dans une variable
     // On regarde si elle est null et on affiche un message en cas d'erreur
     if (globalResultat == NULL){
@@ -269,7 +269,7 @@ bool AjouterJoueurDansDB(bool DBProduction, struct Laby_Score_Joueur joueur)
     //On se connecte
     sqlConnection = ConnecterLaDB(DBProduction, false, false);
     //On met dans 
-    insertScoreJoueur = "INSERT INTO score_joueur (NOM_DU_JOUEUR) VALUES ('%s')";
+    insertScoreJoueur = "INSERT INTO joueur (NOM_DU_JOUEUR) VALUES ('%s')";
     //On obtient la taille
     int tailleInsertSql = strlen(insertScoreJoueur) + strlen(joueur.NomDuJoueur) + 1;
     //on alloue dynamiquement
@@ -304,7 +304,7 @@ bool AjouterJeuDansDB(bool DBProduction, struct Laby_Score_Jeu jeu)
     // Traitement
     sqlConnection = ConnecterLaDB(DBProduction, false, false);
     //On met dans 
-    insertScoreJeu = "INSERT INTO score_jeu (ID_JEU,NOM_DU_JEU) VALUES ('%s','%s')";
+    insertScoreJeu = "INSERT INTO jeu (ID_JEU,NOM_DU_JEU) VALUES ('%s','%s')";
     //On obtient la taille
     int tailleInsertSql = strlen(insertScoreJeu) + strlen(jeu.ID) + strlen(jeu.NomDuJeu) + 1;
     //on alloue dynamiquement
@@ -343,7 +343,7 @@ bool AjouterPartieDansDB(bool DBProduction, struct Laby_Score_Partie partie)
     //On se connecte
     sqlConnection = ConnecterLaDB(DBProduction, false, false);
     //On met dans 
-    insertScoreJeu = "INSERT INTO score_partie (SCORE,ID_JOUEUR,ID_JEU) VALUES ('%s','%d','%d')";
+    insertScoreJeu = "INSERT INTO partie (SCORE,ID_JOUEUR,ID_JEU) VALUES ('%s','%d','%d')";
     //On obtient la taille
     int tailleInsertSql = strlen(insertScoreJeu) + strlen(partie.Score) + 10 + 10 + 1;
     //on alloue dynamiquement

@@ -27,7 +27,12 @@ void ConvertirEnTexteAffichable(char cellule, struct Laby_Cell *celluleAAfficher
         celluleAAfficher->Gauche = Laby_Joueur;
         celluleAAfficher->Droite = Laby_Vide;
 
-    }else if (cellule == 'M')
+    }
+    else if(cellule == 13){
+        celluleAAfficher->Gauche = Laby_Vide;
+        celluleAAfficher->Droite = Laby_Vide;
+    }
+    else if (cellule == 'M')
     {
         celluleAAfficher->Gauche = Laby_Monstre;
         celluleAAfficher->Droite = Laby_Vide;
@@ -131,13 +136,13 @@ void ConvertirUneCelluleEnTexteAffichable(struct Laby_Complet *labyrinthe, int p
     {
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,false,true,true,false);
     }
-    else if (positionV==0 && positionH!=labyrinthe->Largeur-1) //Ligne supérieur
+    else if (positionV==0 && positionH!=labyrinthe->Largeur-2) //Ligne supérieur
     {
         //On regarde s'il y a un mur en bas
         bool bas = labyrinthe->LabyrintheInterne[positionV+1][positionH]=='1';
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,false,true,bas,true);
     }
-    else if (positionV==0 && positionH==labyrinthe->Largeur-1) //Coin supérieur droit
+    else if (positionV==0 && positionH==labyrinthe->Largeur-2) //Coin supérieur droit
     {
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,false,false,true,true);
     }
@@ -157,13 +162,13 @@ void ConvertirUneCelluleEnTexteAffichable(struct Laby_Complet *labyrinthe, int p
     {
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,true,true,false,false);
     }
-    else if (positionV==labyrinthe->Hauteur-1 && positionH!=labyrinthe->Largeur-1 ) //Ligne inférieur
+    else if (positionV==labyrinthe->Hauteur-1 && positionH!=labyrinthe->Largeur-2 ) //Ligne inférieur
     {
         //On regarde s'il y a un mur à haut
         bool haut = (labyrinthe->LabyrintheInterne[positionV-1][positionH]=='1');
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,haut,true,false,true);
     }
-    else if (positionV==labyrinthe->Hauteur-1 && positionH==labyrinthe->Largeur-1) //Coin inférieur droit
+    else if (positionV==labyrinthe->Hauteur-1 && positionH==labyrinthe->Largeur-2) //Coin inférieur droit
     {
         ConvertirEnTexteAffichable(labyrinthe->LabyrintheInterne[positionV][positionH],celluleAAfficher,true,false,false,true);
     }else //Intérieur du labyrinthe
@@ -407,7 +412,7 @@ bool LireFichierLabyrinthe(char *nomFichierLabyrinthe, struct Laby_Complet *laby
     while (fgets(buffer, 50, FichierLabyrinthe) != NULL)
     {
         //Si la ligne est supérieur a 40 on return false
-        if (strlen(buffer) > 40)
+        if (strlen(buffer) > 41)
         {
             strcpy(messageAFormater->Message, "Limite du labyrinthe est 40 et ne peut pas être dépassée.");
             FermerFichier(FichierLabyrinthe);
@@ -420,7 +425,7 @@ bool LireFichierLabyrinthe(char *nomFichierLabyrinthe, struct Laby_Complet *laby
         //Si la taille définit est différente de celle en cours
         if (taille_laby != strlen(buffer))
         {
-            strcpy(messageAFormater->Message, "Une ou plusieurs lignes du labyrinthe sont différentes");
+            strcpy(messageAFormater->Message, "Une ou plusieurs ligne(s) du labyrinthe sont différentes");
             FermerFichier(FichierLabyrinthe);
             return false;
         }
@@ -428,7 +433,7 @@ bool LireFichierLabyrinthe(char *nomFichierLabyrinthe, struct Laby_Complet *laby
         for (cptVerifSiCaractereInconnu = 0; cptVerifSiCaractereInconnu < strlen(buffer); cptVerifSiCaractereInconnu++)
         {
             //Si un caractère est différent de 1,0 ou \n on return false
-            if (buffer[cptVerifSiCaractereInconnu] != '1' && buffer[cptVerifSiCaractereInconnu] != '0' && buffer[cptVerifSiCaractereInconnu] != '\n')
+            if (buffer[cptVerifSiCaractereInconnu] != '1' && buffer[cptVerifSiCaractereInconnu] != '0' && buffer[cptVerifSiCaractereInconnu] != '\n' && (buffer[cptVerifSiCaractereInconnu] != 13) )
             {
                 strcpy(messageAFormater->Message, "Le squelette du labyrinthe contient des caractères non conformes");
                 FermerFichier(FichierLabyrinthe);
@@ -460,7 +465,7 @@ bool LireFichierLabyrinthe(char *nomFichierLabyrinthe, struct Laby_Complet *laby
         //On regarde si la ligne est NULL
         if (labyrinthe->LabyrintheInterne[cpt] == NULL)
         {
-            strcpy(messageAFormater->Message, "Erreur d'insertion de données");
+            strcpy(messageAFormater->Message, "Erreur d'insertion de donnée(s)");
             FermerFichier(FichierLabyrinthe);
             return false;
         }
